@@ -64,51 +64,51 @@
 
         data.forEach(function(a) {
             if(a.pekerjaan == 1){
-                a.pekerjaan = a.pekerjaan.toString().replace("1", 'Ibu rumah tangga');
+                a.pekerjaan = 'Ibu rumah tangga';
             }else if(a.pekerjaan == 2){
-                a.pekerjaan = a.pekerjaan.toString().replace("2", 'Pegawai Negeri Sipil');
+                a.pekerjaan = 'Pegawai Negeri Sipil';
             }else if(a.pekerjaan == 3){
-                a.pekerjaan = a.pekerjaan.toString().replace("3", 'Pegawai perusahaan swasta');
+                a.pekerjaan = 'Pegawai perusahaan swasta';
             }else if(a.pekerjaan == 4){
-                a.pekerjaan = a.pekerjaan.toString().replace("4", 'Wiraswasta');
+                a.pekerjaan = 'Wiraswasta';
             }else if(a.pekerjaan == 5){
-                a.pekerjaan = a.pekerjaan.toString().replace("5", 'Buruh pabrik');
+                a.pekerjaan = 'Buruh pabrik';
             }else if(a.pekerjaan == 6){
-                a.pekerjaan = a.pekerjaan.toString().replace("6", 'Lainnya');
+                a.pekerjaan = 'Lainnya';
             }
 
             if(a.jenis_kelamin == 1){
-                a.jenis_kelamin = a.jenis_kelamin.toString().replace("1", 'Laki Laki');
+                a.jenis_kelamin = 'Laki Laki';
             }else if(a.jenis_kelamin == 2){
-                a.jenis_kelamin = a.jenis_kelamin.toString().replace("2", 'Perempuan');
+                a.jenis_kelamin = 'Perempuan';
             }
 
             if(a.Kota == 1){
-                a.Kota = a.Kota.toString().replace("1", 'Jakarta');
+                a.Kota = 'Jakarta';
             }else if(a.Kota == 2){
-                a.Kota = a.Kota.toString().replace("2", 'Bandung');
+                a.Kota = 'Bandung';
             }else if(a.Kota == 3){
-                a.Kota = a.Kota.toString().replace("3", 'Surabaya');
+                a.Kota = 'Surabaya';
             }
 
             if(a.pendidikan == 1){
-                a.pendidikan = a.pendidikan.toString().replace("1", 'Tidak ada pendidikan formal');
+                a.pendidikan = 'Tidak ada pendidikan formal';
             }else if(a.pendidikan == 2){
-                a.pendidikan = a.pendidikan.toString().replace("2", 'Sekolah Dasar');
+                a.pendidikan = 'Sekolah Dasar';
             }else if(a.pendidikan == 3){
-                a.pendidikan = a.pendidikan.toString().replace("3", 'SMP');
+                a.pendidikan = 'SMP';
             }else if(a.pendidikan == 4){
-                a.pendidikan = a.pendidikan.toString().replace("4", 'SMA');
+                a.pendidikan = 'SMA';
             }else if(a.pendidikan == 5){
-                a.pendidikan = a.pendidikan.toString().replace("5", 'Akademi (D2/D3) / setingkatnya');
+                a.pendidikan = 'Akademi (D2/D3) / setingkatnya';
             }else if(a.pendidikan == 6){
-                a.pendidikan = a.pendidikan.toString().replace("6", 'Sarjana S-1');
+                a.pendidikan = 'Sarjana S-1';
             }else if(a.pendidikan == 7){
-                a.pendidikan = a.pendidikan.toString().replace("7", 'Sarjana S-2');
+                a.pendidikan = 'Sarjana S-2';
             }else if(a.pendidikan == 8){
-                a.pendidikan = a.pendidikan.toString().replace("8", 'Doktor (Sarjana S-3)');
+                a.pendidikan = 'Doktor (Sarjana S-3)';
             }else if(a.pendidikan == 9){
-                a.pendidikan = a.pendidikan.toString().replace("9", 'Menolak');
+                a.pendidikan = 'Menolak';
             }
 
             
@@ -137,9 +137,9 @@
         var data = getData();
         data.forEach(function(a) {
             if(a.jenis_kelamin == 1){
-                a.jenis_kelamin = a.jenis_kelamin.toString().replace("1", 'Laki Laki');
+                a.jenis_kelamin = 'Laki Laki';
             }else if(a.jenis_kelamin == 2){
-                a.jenis_kelamin = a.jenis_kelamin.toString().replace("2", 'Perempuan');
+                a.jenis_kelamin = 'Perempuan';
             }
         });
         var jenis_kelamin = data.reduce(function(result, current) {
@@ -199,17 +199,17 @@
         var data = getData();
         data.forEach(function(a) {
             if(a.pekerjaan == 1){
-                a.pekerjaan = a.pekerjaan.toString().replace("1", 'Ibu rumah tangga');
+                a.pekerjaan = 'Ibu rumah tangga';
             }else if(a.pekerjaan == 2){
-                a.pekerjaan = a.pekerjaan.toString().replace("2", 'Pegawai Negeri Sipil');
+                a.pekerjaan = 'Pegawai Negeri Sipil';
             }else if(a.pekerjaan == 3){
-                a.pekerjaan = a.pekerjaan.toString().replace("3", 'Pegawai perusahaan swasta');
+                a.pekerjaan = 'Pegawai perusahaan swasta';
             }else if(a.pekerjaan == 4){
-                a.pekerjaan = a.pekerjaan.toString().replace("4", 'Wiraswasta');
+                a.pekerjaan = 'Wiraswasta';
             }else if(a.pekerjaan == 5){
-                a.pekerjaan = a.pekerjaan.toString().replace("5", 'Buruh pabrik');
+                a.pekerjaan = 'Buruh pabrik';
             }else if(a.pekerjaan == 6){
-                a.pekerjaan = a.pekerjaan.toString().replace("6", 'Lainnya');
+                a.pekerjaan = 'Lainnya';
             }
         });
         var pekerjaan = data.reduce(function(result, current) {
@@ -277,11 +277,11 @@
         var data = getData();
         data.forEach(function(a) {
             if(a.Kota == 1){
-                a.Kota = a.Kota.toString().replace("1", 'Jakarta');
+                a.Kota = 'Jakarta';
             }else if(a.Kota == 2){
-                a.Kota = a.Kota.toString().replace("2", 'Bandung');
+                a.Kota = 'Bandung';
             }else if(a.Kota == 3){
-                a.Kota = a.Kota.toString().replace("3", 'Surabaya');
+                a.Kota = 'Surabaya';
             }
         });
         var kota = data.reduce(function(result, current) {
@@ -323,51 +323,51 @@
         console.log(pendidikan);
         pendidikan.forEach(function(a) {
             if(a.pekerjaan == 1){
-                a.pekerjaan = a.pekerjaan.toString().replace("1", 'Ibu rumah tangga');
+                a.pekerjaan = 'Ibu rumah tangga';
             }else if(a.pekerjaan == 2){
-                a.pekerjaan = a.pekerjaan.toString().replace("2", 'Pegawai Negeri Sipil');
+                a.pekerjaan = 'Pegawai Negeri Sipil';
             }else if(a.pekerjaan == 3){
-                a.pekerjaan = a.pekerjaan.toString().replace("3", 'Pegawai perusahaan swasta');
+                a.pekerjaan = 'Pegawai perusahaan swasta';
             }else if(a.pekerjaan == 4){
-                a.pekerjaan = a.pekerjaan.toString().replace("4", 'Wiraswasta');
+                a.pekerjaan = 'Wiraswasta';
             }else if(a.pekerjaan == 5){
-                a.pekerjaan = a.pekerjaan.toString().replace("5", 'Buruh pabrik');
+                a.pekerjaan = 'Buruh pabrik';
             }else if(a.pekerjaan == 6){
-                a.pekerjaan = a.pekerjaan.toString().replace("6", 'Lainnya');
+                a.pekerjaan = 'Lainnya';
             }
 
             if(a.jenis_kelamin == 1){
-                a.jenis_kelamin = a.jenis_kelamin.toString().replace("1", 'Laki Laki');
+                a.jenis_kelamin = 'Laki Laki';
             }else if(a.jenis_kelamin == 2){
-                a.jenis_kelamin = a.jenis_kelamin.toString().replace("2", 'Perempuan');
+                a.jenis_kelamin = 'Perempuan';
             }
 
             if(a.Kota == 1){
-                a.Kota = a.Kota.toString().replace("1", 'Jakarta');
+                a.Kota = 'Jakarta';
             }else if(a.Kota == 2){
-                a.Kota = a.Kota.toString().replace("2", 'Bandung');
+                a.Kota = 'Bandung';
             }else if(a.Kota == 3){
-                a.Kota = a.Kota.toString().replace("3", 'Surabaya');
+                a.Kota = 'Surabaya';
             }
 
             if(a.pendidikan == 1){
-                a.pendidikan = a.pendidikan.toString().replace("1", 'Tidak ada pendidikan formal');
+                a.pendidikan = 'Tidak ada pendidikan formal';
             }else if(a.pendidikan == 2){
-                a.pendidikan = a.pendidikan.toString().replace("2", 'Sekolah Dasar');
+                a.pendidikan = 'Sekolah Dasar';
             }else if(a.pendidikan == 3){
-                a.pendidikan = a.pendidikan.toString().replace("3", 'SMP');
+                a.pendidikan = 'SMP';
             }else if(a.pendidikan == 4){
-                a.pendidikan = a.pendidikan.toString().replace("4", 'SMA');
+                a.pendidikan = 'SMA';
             }else if(a.pendidikan == 5){
-                a.pendidikan = a.pendidikan.toString().replace("5", 'Akademi (D2/D3) / setingkatnya');
+                a.pendidikan = 'Akademi (D2/D3) / setingkatnya';
             }else if(a.pendidikan == 6){
-                a.pendidikan = a.pendidikan.toString().replace("6", 'Sarjana S-1');
+                a.pendidikan = 'Sarjana S-1';
             }else if(a.pendidikan == 7){
-                a.pendidikan = a.pendidikan.toString().replace("7", 'Sarjana S-2');
+                a.pendidikan = 'Sarjana S-2';
             }else if(a.pendidikan == 8){
-                a.pendidikan = a.pendidikan.toString().replace("8", 'Doktor (Sarjana S-3)');
+                a.pendidikan = 'Doktor (Sarjana S-3)';
             }else if(a.pendidikan == 9){
-                a.pendidikan = a.pendidikan.toString().replace("9", 'Menolak');
+                a.pendidikan = 'Menolak';
             }
             
         });
