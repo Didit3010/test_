@@ -1,0 +1,392 @@
+<head>
+	<title></title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+    </style>
+<body>
+<!--  -->
+<h1 style = "color:green;" >   
+	Test   
+</h1>
+  
+<button onclick = "constructTable('#table')"> 
+	Data All 
+</button> 
+
+<button onclick = "constructTableJumlah('#demo')"> 
+	Jumlah By Gender
+</button>
+
+<button onclick = "pekerjaan('#pekerjaan_table')"> 
+	Jumlah By Pekerjaan
+</button>
+
+<button onclick = "kota('#kota_test')"> 
+	Jumlah By Kota
+</button>
+
+<button onclick = "pendidikan('#pendidikan')"> 
+	List Di Atas SMA
+</button>
+
+<br><br> 
+
+<table align = "center" id="table" border="1" hidden> 
+</table> 
+
+<table align = "center" id="pendidikan" border="1" hidden> 
+</table>
+
+<table align = "center" id="pekerjaan_table" border="1" hidden> 
+</table> 
+
+<table align = "center" id="demo" border="1" hidden> 
+</table> 
+
+
+<table align = "center" id="kota_test" border="1" hidden> 
+</table> 
+
+
+<!--  -->
+</body>
+<script type="text/javascript" src="rawdata.js"></script>
+<script type="text/javascript">    
+              
+    function constructTable(selector) { 
+        $( "#table" ).show();
+        $( "#demo" ).hide();
+        $("#pekerjaan_table").hide();
+        $( "#pendidikan" ).hide();
+        $( "#kota_test" ).hide();
+        var data = getData();
+
+        data.forEach(function(a) {
+            if(a.pekerjaan == 1){
+                a.pekerjaan = a.pekerjaan.toString().replace("1", 'Ibu rumah tangga');
+            }else if(a.pekerjaan == 2){
+                a.pekerjaan = a.pekerjaan.toString().replace("2", 'Pegawai Negeri Sipil');
+            }else if(a.pekerjaan == 3){
+                a.pekerjaan = a.pekerjaan.toString().replace("3", 'Pegawai perusahaan swasta');
+            }else if(a.pekerjaan == 4){
+                a.pekerjaan = a.pekerjaan.toString().replace("4", 'Wiraswasta');
+            }else if(a.pekerjaan == 5){
+                a.pekerjaan = a.pekerjaan.toString().replace("5", 'Buruh pabrik');
+            }else if(a.pekerjaan == 6){
+                a.pekerjaan = a.pekerjaan.toString().replace("6", 'Lainnya');
+            }
+
+            if(a.jenis_kelamin == 1){
+                a.jenis_kelamin = a.jenis_kelamin.toString().replace("1", 'Laki Laki');
+            }else if(a.jenis_kelamin == 2){
+                a.jenis_kelamin = a.jenis_kelamin.toString().replace("2", 'Perempuan');
+            }
+
+            if(a.Kota == 1){
+                a.Kota = a.Kota.toString().replace("1", 'Jakarta');
+            }else if(a.Kota == 2){
+                a.Kota = a.Kota.toString().replace("2", 'Bandung');
+            }else if(a.Kota == 3){
+                a.Kota = a.Kota.toString().replace("3", 'Surabaya');
+            }
+
+            if(a.pendidikan == 1){
+                a.pendidikan = a.pendidikan.toString().replace("1", 'Tidak ada pendidikan formal');
+            }else if(a.pendidikan == 2){
+                a.pendidikan = a.pendidikan.toString().replace("2", 'Sekolah Dasar');
+            }else if(a.pendidikan == 3){
+                a.pendidikan = a.pendidikan.toString().replace("3", 'SMP');
+            }else if(a.pendidikan == 4){
+                a.pendidikan = a.pendidikan.toString().replace("4", 'SMA');
+            }else if(a.pendidikan == 5){
+                a.pendidikan = a.pendidikan.toString().replace("5", 'Akademi (D2/D3) / setingkatnya');
+            }else if(a.pendidikan == 6){
+                a.pendidikan = a.pendidikan.toString().replace("6", 'Sarjana S-1');
+            }else if(a.pendidikan == 7){
+                a.pendidikan = a.pendidikan.toString().replace("7", 'Sarjana S-2');
+            }else if(a.pendidikan == 8){
+                a.pendidikan = a.pendidikan.toString().replace("8", 'Doktor (Sarjana S-3)');
+            }else if(a.pendidikan == 9){
+                a.pendidikan = a.pendidikan.toString().replace("9", 'Menolak');
+            }
+
+            
+        });
+        var list = data;        
+        var cols = Headers(list, selector); 
+        for (var i = 0; i < list.length; i++) { 
+            var row = $('<tr/>');    
+            for (var colIndex = 0; colIndex < cols.length; colIndex++) 
+            { 
+                var val = list[i][cols[colIndex]];
+                if (val == null) val = "";   
+                    row.append($('<td/>').html(val)); 
+            }
+            $(selector).append(row);            
+        } 
+    }
+    
+
+    function constructTableJumlah(laki) {
+        $("#table").hide();
+        $("#demo").show();
+        $("#pekerjaan_table").hide();
+        $( "#pendidikan" ).hide();
+        $( "#kota_test" ).hide();
+        var data = getData();
+        data.forEach(function(a) {
+            if(a.jenis_kelamin == 1){
+                a.jenis_kelamin = a.jenis_kelamin.toString().replace("1", 'Laki Laki');
+            }else if(a.jenis_kelamin == 2){
+                a.jenis_kelamin = a.jenis_kelamin.toString().replace("2", 'Perempuan');
+            }
+        });
+        var jenis_kelamin = data.reduce(function(result, current) {
+            result[current.jenis_kelamin] = result[current.jenis_kelamin] || [];
+            result[current.jenis_kelamin].push(current);
+            return result;
+        }, {});
+
+        var newJenisKelamin = Object.keys(jenis_kelamin).map(function (key) {
+            return { jenis_kelamin: key, jumlah: jenis_kelamin[key].length };
+        }); 
+        console.log(newJenisKelamin);
+        
+        var cols = Headers(newJenisKelamin, laki); 
+        console.log(cols);  
+        for (var i = 0; i < newJenisKelamin.length; i++) { 
+            var row = $('<tr/>');    
+            for (var colIndex = 0; colIndex < cols.length; colIndex++) 
+            { 
+                var val = newJenisKelamin[i][cols[colIndex]];
+                if (val == null) val = "";   
+                    row.append($('<td/>').html(val)); 
+            }
+            $(laki).append(row); 
+
+        } 
+        
+                    
+    }
+        
+    function Headers(list, selector) { 
+        var columns = []; 
+        var header = $('<tr/>');
+        console.log("list",list);
+        console.log("selector",selector);
+            
+        for (var i = 0; i < list.length; i++) { 
+            var row = list[i]; 
+                
+            for (var k in row) { 
+                if ($.inArray(k, columns) == -1) { 
+                    columns.push(k); 
+                    header.append($('<th/>').html(k)); 
+                } 
+            } 
+        } 
+        $(selector).html(header); 
+            return columns; 
+    }   
+    
+    function pekerjaan(pekerjaan_x){
+        $( "#pekerjaan_table" ).show();
+        $( "#table" ).hide();
+        $( "#demo" ).hide();
+        $( "#pendidikan" ).hide();
+        $( "#kota_test" ).hide();
+        var data = getData();
+        data.forEach(function(a) {
+            if(a.pekerjaan == 1){
+                a.pekerjaan = a.pekerjaan.toString().replace("1", 'Ibu rumah tangga');
+            }else if(a.pekerjaan == 2){
+                a.pekerjaan = a.pekerjaan.toString().replace("2", 'Pegawai Negeri Sipil');
+            }else if(a.pekerjaan == 3){
+                a.pekerjaan = a.pekerjaan.toString().replace("3", 'Pegawai perusahaan swasta');
+            }else if(a.pekerjaan == 4){
+                a.pekerjaan = a.pekerjaan.toString().replace("4", 'Wiraswasta');
+            }else if(a.pekerjaan == 5){
+                a.pekerjaan = a.pekerjaan.toString().replace("5", 'Buruh pabrik');
+            }else if(a.pekerjaan == 6){
+                a.pekerjaan = a.pekerjaan.toString().replace("6", 'Lainnya');
+            }
+        });
+        var pekerjaan = data.reduce(function(result, current) {
+            result[current.pekerjaan] = result[current.pekerjaan] || [];
+            result[current.pekerjaan].push(current);
+            return result;
+        }, {});
+
+        var newPekerjaan = Object.keys(pekerjaan).map(function (key) {
+            return { pekerjaan: key, other: pekerjaan[key] };
+        }); 
+        
+        newPekerjaan.forEach(function(x) {
+            var filter1 = {
+                pekerjaan: x.pekerjaan,
+                jenis_kelamin: "1"
+            };
+            var laki= data.filter(function(item) {
+                for (var key in filter1) {
+                    if (item[key] === undefined || item[key] != filter1[key])
+                    return false;
+                }
+                return true;
+            });
+            var filter2 = {
+                pekerjaan: x.pekerjaan,
+                jenis_kelamin: "2"
+            };
+            var perempuan= data.filter(function(item) {
+                for (var key in filter1) {
+                    if (item[key] === undefined || item[key] != filter2[key])
+                    return false;
+                }
+                return true;
+            });
+            var totalLaki = laki.length;
+            var totalPerempuan = perempuan.length;
+            x.laki_laki = totalLaki;
+            x.perempuan = totalPerempuan;
+            delete x['other'];
+        });
+        
+        console.log(newPekerjaan);
+        var cols = Headers(newPekerjaan, pekerjaan_x); 
+        console.log(cols);  
+        for (var i = 0; i < newPekerjaan.length; i++) { 
+            var row = $('<tr/>');    
+            for (var colIndex = 0; colIndex < cols.length; colIndex++) 
+            { 
+                var val = newPekerjaan[i][cols[colIndex]];
+                if (val == null) val = "";   
+                    row.append($('<td/>').html(val)); 
+            }
+            $(pekerjaan_x).append(row); 
+
+        } 
+    }
+
+    function kota(kota_x){
+        $( "#pekerjaan_table" ).hide();
+        $( "#table" ).hide();
+        $( "#demo" ).hide();
+        $( "#pendidikan" ).hide();
+        $( "#kota_test" ).show();
+        var data = getData();
+        data.forEach(function(a) {
+            if(a.Kota == 1){
+                a.Kota = a.Kota.toString().replace("1", 'Jakarta');
+            }else if(a.Kota == 2){
+                a.Kota = a.Kota.toString().replace("2", 'Bandung');
+            }else if(a.Kota == 3){
+                a.Kota = a.Kota.toString().replace("3", 'Surabaya');
+            }
+        });
+        var kota = data.reduce(function(result, current) {
+            result[current.Kota] = result[current.Kota] || [];
+            result[current.Kota].push(current);
+            return result;
+        }, {});
+
+        var newKota = Object.keys(kota).map(function (key) {
+            return { kota: key, jumlah: kota[key].length };
+        }); 
+        
+        newKota.sort(function(a, b){return b.value - a.value});
+        console.log(newKota);
+        var cols = Headers(newKota, kota_x);   
+        console.log(cols);
+        for (var i = 0; i < newKota.length; i++) { 
+            var row = $('<tr/>');    
+            for (var colIndex = 0; colIndex < cols.length; colIndex++) 
+            { 
+                var val = newKota[i][cols[colIndex]];
+                if (val == null) val = "";   
+                    row.append($('<td/>').html(val)); 
+            }
+            $(kota_x).append(row);            
+        } 
+    }
+
+    function pendidikan(pendidikan_x){
+        $( "#pekerjaan_table" ).hide();
+        $( "#table" ).hide();
+        $( "#demo" ).hide();
+        $( "#pendidikan" ).show();
+        $( "#kota_test" ).hide();
+        var data = getData();
+        var pendidikan = data.filter(function (de) {
+        return de.pendidikan > "4";
+        });
+        console.log(pendidikan);
+        pendidikan.forEach(function(a) {
+            if(a.pekerjaan == 1){
+                a.pekerjaan = a.pekerjaan.toString().replace("1", 'Ibu rumah tangga');
+            }else if(a.pekerjaan == 2){
+                a.pekerjaan = a.pekerjaan.toString().replace("2", 'Pegawai Negeri Sipil');
+            }else if(a.pekerjaan == 3){
+                a.pekerjaan = a.pekerjaan.toString().replace("3", 'Pegawai perusahaan swasta');
+            }else if(a.pekerjaan == 4){
+                a.pekerjaan = a.pekerjaan.toString().replace("4", 'Wiraswasta');
+            }else if(a.pekerjaan == 5){
+                a.pekerjaan = a.pekerjaan.toString().replace("5", 'Buruh pabrik');
+            }else if(a.pekerjaan == 6){
+                a.pekerjaan = a.pekerjaan.toString().replace("6", 'Lainnya');
+            }
+
+            if(a.jenis_kelamin == 1){
+                a.jenis_kelamin = a.jenis_kelamin.toString().replace("1", 'Laki Laki');
+            }else if(a.jenis_kelamin == 2){
+                a.jenis_kelamin = a.jenis_kelamin.toString().replace("2", 'Perempuan');
+            }
+
+            if(a.Kota == 1){
+                a.Kota = a.Kota.toString().replace("1", 'Jakarta');
+            }else if(a.Kota == 2){
+                a.Kota = a.Kota.toString().replace("2", 'Bandung');
+            }else if(a.Kota == 3){
+                a.Kota = a.Kota.toString().replace("3", 'Surabaya');
+            }
+
+            if(a.pendidikan == 1){
+                a.pendidikan = a.pendidikan.toString().replace("1", 'Tidak ada pendidikan formal');
+            }else if(a.pendidikan == 2){
+                a.pendidikan = a.pendidikan.toString().replace("2", 'Sekolah Dasar');
+            }else if(a.pendidikan == 3){
+                a.pendidikan = a.pendidikan.toString().replace("3", 'SMP');
+            }else if(a.pendidikan == 4){
+                a.pendidikan = a.pendidikan.toString().replace("4", 'SMA');
+            }else if(a.pendidikan == 5){
+                a.pendidikan = a.pendidikan.toString().replace("5", 'Akademi (D2/D3) / setingkatnya');
+            }else if(a.pendidikan == 6){
+                a.pendidikan = a.pendidikan.toString().replace("6", 'Sarjana S-1');
+            }else if(a.pendidikan == 7){
+                a.pendidikan = a.pendidikan.toString().replace("7", 'Sarjana S-2');
+            }else if(a.pendidikan == 8){
+                a.pendidikan = a.pendidikan.toString().replace("8", 'Doktor (Sarjana S-3)');
+            }else if(a.pendidikan == 9){
+                a.pendidikan = a.pendidikan.toString().replace("9", 'Menolak');
+            }
+            
+        });
+
+        var list_pendidikan = pendidikan;   
+        var cols = Headers(list_pendidikan, pendidikan_x);   
+        console.log(cols);
+        for (var i = 0; i < list_pendidikan.length; i++) { 
+            var row = $('<tr/>');    
+            for (var colIndex = 0; colIndex < cols.length; colIndex++) 
+            { 
+                var val = list_pendidikan[i][cols[colIndex]];
+                if (val == null) val = "";   
+                    row.append($('<td/>').html(val)); 
+            }
+            $(pendidikan_x).append(row);            
+        } 
+
+    }
+    
+</script>
+
