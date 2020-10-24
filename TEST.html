@@ -294,7 +294,7 @@
             return { kota: key, jumlah: kota[key].length };
         }); 
         
-        newKota.sort(function(a, b){return b.value - a.value});
+        newKota.sort(function(a, b){return b.jumlah - a.jumlah});
         console.log(newKota);
         var cols = Headers(newKota, kota_x);   
         console.log(cols);
